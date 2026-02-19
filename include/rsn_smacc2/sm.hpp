@@ -1,35 +1,28 @@
-// include/rsn_smacc2/sm.hpp
 #pragma once
 #include <smacc2/smacc.hpp>
-#include <boost/statechart/event.hpp>
+#include "rsn_smacc2/events.hpp"
 
 namespace rsn_smacc2
 {
-namespace sc = boost::statechart;
+// 先前向声明所有 state
+class StIdle;
+class StPickupAndGrasp;
+class StWaitHandPose;
+class StMoveAndRelease;
 
-
-
-// -------- forward declare STATES （只声明名字，不写内容）--------
-class StPrepareTool;
-class StEnableWaitHand;
-class StWaitHandReady;
-class StExecuteHandover;
-class StDone;
-
-// -------- STATE MACHINE --------
+// 顶层状态机，初始状态为 StIdle
 class RsnSmacc2
-  : public smacc2::SmaccStateMachineBase<RsnSmacc2, StPrepareTool>
+  : public smacc2::SmaccStateMachineBase<RsnSmacc2, StIdle>
 {
 public:
   using SmaccStateMachineBase::SmaccStateMachineBase;
 };
 
-} // namespace rsn_smacc2
+}  // namespace rsn_smacc2
 
-// -------- 在这里 include 各个 state 的头文件（真正的定义）--------
-#include "rsn_smacc2/states/st_prepare_tool.hpp"
-#include "rsn_smacc2/states/st_enable_wait_hand.hpp"
-#include "rsn_smacc2/states/st_wait_hand_ready.hpp"
-#include "rsn_smacc2/states/st_execute_handover.hpp"
-#include "rsn_smacc2/states/st_done.hpp"
+// 再在文件结尾包含各个 state 的定义
+#include "rsn_smacc2/states/st_idle.hpp"
+#include "rsn_smacc2/states/st_pickup_and_grasp.hpp"
+#include "rsn_smacc2/states/st_wait_hand_pose.hpp"
+#include "rsn_smacc2/states/st_move_and_release.hpp"
 
