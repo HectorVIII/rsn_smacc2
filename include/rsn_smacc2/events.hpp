@@ -5,19 +5,19 @@ namespace rsn_smacc2
 {
 namespace sc = boost::statechart;
 
-// GUI / 外部开始一轮 handover
+// GUI / start handover
 struct EvStart : sc::event<EvStart> {};
 
-// /handover/prepare_tool 成功（器械已抓好，回到 P0）
+// /handover/prepare_tool 
 struct EvInstrumentReady : sc::event<EvInstrumentReady> {};
 
-// /handover/hand_ready == true （ZED 算出手的位置）
+// /handover/hand_ready == true 
 struct EvHandPoseReady : sc::event<EvHandPoseReady> {};
 
-// /handover/execute_handover 成功（移动到手、等待>7N、释放并回到 P0）
+// /handover/execute_handover
 struct EvHandoverDone : sc::event<EvHandoverDone> {};
 
-// 任意失败
+// failed
 struct EvFail : sc::event<EvFail> {};
 
 }  // namespace rsn_smacc2
